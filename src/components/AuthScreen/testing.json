@@ -1,0 +1,38 @@
+{
+    "user1": [
+        {
+            "name": "Rahul",
+            "city": "Faridabad"
+        }
+    ],
+    "user2": [
+        {
+            "name": "Umesh",
+            "city": "Signature"
+        }
+    ],
+    "user3": [
+        {
+            "name": "Prashant",
+            "city": "Saket"
+        }
+    ],
+    "user4": [
+        {
+            "name": "Ashu",
+            "city": "Dwarka"
+        }
+    ],
+    "user5": [
+        {
+            "name": "Puru",
+            "city": "Moradbad"
+        }
+    ],
+    "user6": [
+        {
+            "name": "Deepak",
+            "city": "Dwarka"
+        }
+    ]
+}
