@@ -57,8 +57,8 @@ const EditProfile = () => {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SagaScreen')} >
-                    <Text style={styles.btnText}>SagaScreen</Text>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('EmpList')} >
+                    <Text style={styles.btnText}>Employee List</Text>
                 </TouchableOpacity>
 
             </View>

@@ -3,7 +3,8 @@ import React from 'react';
 import Signup from '../components/AuthScreen/Signup';
 import Profile from '../components/AuthScreen/Profile';
 import EditProfile from '../components/AuthScreen/EditProfile';
-import SagaScreen from '../components/AuthScreen/SagaScreen';
+import EmpList from '../components/AuthScreen/EmpList';
+// import EmpDetail from '../components/AuthScreen/EmpDetail';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,7 +21,8 @@ const AppNavigation = () => {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
-        <Stack.Screen name="SagaScreen" component={SagaScreen} />
+        <Stack.Screen name="EmpList" component={EmpList} />
+        {/* <Stack.Screen name="EmpDetail" component={EmpDetail} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

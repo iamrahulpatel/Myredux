@@ -1,9 +1,11 @@
-import { SAVE_DATA, TEST_SAGA, STORE_DEMO_SAGA } from "../actions/actionType";
+import { SAVE_DATA, TEST_SAGA,STORE_DEMO_SAGA, DISPLAY_DUMMY_SAGA } from "../actions/actionType";
 
 const initialState = {
     userData: null,
     data: null,
-    sagaData: null
+
+    storeSaga: null,
+    displaySaga: null
 }
 
 export default myReducer = (state = initialState, action) => {
@@ -21,9 +23,13 @@ export default myReducer = (state = initialState, action) => {
         case STORE_DEMO_SAGA:
             return {
                 ...state,
-                sagaData: action.payload
+                storeSaga: action.payload
             }
-
+        case DISPLAY_DUMMY_SAGA:
+            return {
+                ...state,
+                displaySaga: action.payload
+            }
         default:
             return state;
     }

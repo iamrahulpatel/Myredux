@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { TEST_SAGA, STORE_DEMO_SAGA } from "../actions/actionType";
+import { TEST_SAGA, STORE_DEMO_SAGA, SHOW_DEMO_SAGA } from "../actions/actionType";
 
 // const userReducerStates = (state) => state.reducer;
 
@@ -12,33 +12,37 @@ function* checkSaga(value) {
 
     //Method GET
     const getresp = yield call(() =>
-      // fetch("https://api.chucknorris.io/jokes/random")
-      fetch('http://dummy.restapiexample.com/api/v1/employees',{
-        method: 'GET'
-     })
-     .then((response) => response.json())
+      fetch('https://reqres.in/api/users',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application.json'
+          },
+          body: JSON.stringify(getresp)
+        })
+        .then((response) => response.json())
         .then(myJson => myJson)
-    );
-        // console.log(getresp);
-        console.log('Saga Data ', value.payload);
+    )
+    console.log(getresp);
+    console.log('Saga data : ', value.payload);
 
     //Method POST
-    const postresp = yield call(() =>
-      fetch("http://dummy.restapiexample.com/api/v1/employees")
-        .then(response => response.json())
-        .then(myJson => myJson),
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application.json',
-        },
-        body: JSON.stringify(postresp)
-      }
-    );
-    // console.log('checkSaga', value.payload);
+    // const postresp = yield call(() =>
+    //   fetch("http://dummy.restapiexample.com/api/v1/employees")
+    //     .then(response => response.json())
+    //     .then(myJson => myJson),
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application.json',
+    //     },
+    //     body: JSON.stringify(postresp)
+    //   }
+    // );
+    // console.log('POST response ', value.payload);
 
     yield put({
-        type: STORE_DEMO_SAGA,
+        type: SHOW_DEMO_SAGA,
         payload: getresp
     })
 
