@@ -3,6 +3,7 @@ import React from 'react';
 import Signup from '../components/AuthScreen/Signup';
 import Profile from '../components/AuthScreen/Profile';
 import EditProfile from '../components/AuthScreen/EditProfile';
+import Header from '../components/common/Header';
 import EmpList from '../components/AuthScreen/EmpList';
 // import EmpDetail from '../components/AuthScreen/EmpDetail';
 
@@ -21,6 +22,7 @@ const AppNavigation = () => {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="Header" component={Header} />
         <Stack.Screen name="EmpList" component={EmpList} />
         {/* <Stack.Screen name="EmpDetail" component={EmpDetail} /> */}
       </Stack.Navigator>

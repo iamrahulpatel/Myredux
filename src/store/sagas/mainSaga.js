@@ -18,13 +18,13 @@ function* checkSaga(value) {
           headers: {
             'Content-Type': 'application.json'
           },
-          body: JSON.stringify(getresp)
+          body: null
         })
         .then((response) => response.json())
         .then(myJson => myJson)
     )
-    console.log(getresp);
-    console.log('Saga data : ', value.payload);
+    console.log("response ::",getresp);
+    console.log('Saga data ::', value.payload);
 
     //Method POST
     // const postresp = yield call(() =>
@@ -43,7 +43,7 @@ function* checkSaga(value) {
 
     yield put({
         type: SHOW_DEMO_SAGA,
-        payload: getresp
+        payload: getresp.data
     })
 
   } catch (error) {

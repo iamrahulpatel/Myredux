@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
+import Header from "../common/Header";
 import { TEST_SAGA, STORE_DEMO_SAGA } from "../../store/actions/actionType";
 
 
@@ -12,8 +13,8 @@ const EmpList = () => {
     const dispatch = useDispatch();
     const renderItemFunc = ({ item, index }) => (
         <View>
-            <Text>Name : {item.employee_name}</Text>
-            <Text>Age : {item.employee_age}</Text>
+            <Text>Name : {item.id}</Text>
+            <Text>Age : {item.email}</Text>
         </View>
     )
 
@@ -21,10 +22,11 @@ const EmpList = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 30 }}>Employee List Screen</Text>
+            <Header style={{color:"red"}} name="Employees List" />
             <TouchableOpacity
             onPress={
-                ()=>{
+                ()=>
+                {
                     dispatch({
                         type:STORE_DEMO_SAGA,
                         payload:"dummySagaData"
