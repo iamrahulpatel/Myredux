@@ -3,6 +3,7 @@ import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity } from 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
+import { SHOW_DEMO_SAGA, STORE_DEMO_SAGA } from "../../store/actions/actionType";
 
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
@@ -10,7 +11,7 @@ const wh = Dimensions.get('window').height;
 const EditProfile = () => {
 
     const fetchData = useSelector((state) => state.userData);
-    console.log(fetchData);
+    console.log("Edited Profile Data",fetchData);
 
     //editing data states
     const [ename, setEname] = useState(fetchData?.myname);
@@ -57,8 +58,14 @@ const EditProfile = () => {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SagaScreen')} >
-                    <Text style={styles.btnText}>SagaScreen</Text>
+                <TouchableOpacity style={styles.btn} onPress={() =>
+                    dispatch({
+                        type: STORE_DEMO_SAGA,
+                        payload: "dummySagaData"
+                    })
+                    && navigation.navigate('EmpList')
+                    } >
+                    <Text style={styles.btnText}>Employee List</Text>
                 </TouchableOpacity>
 
             </View>

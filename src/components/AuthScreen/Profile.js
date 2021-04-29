@@ -11,7 +11,7 @@ const Profile = () => {
 
     const dispatch = useDispatch();
     const fetchData = useSelector((state) => state.userData);
-    console.log(fetchData);
+    console.log("Profile Data",fetchData);
 
     //editing data states
     const [editmode, setEditmode] = useState(false);

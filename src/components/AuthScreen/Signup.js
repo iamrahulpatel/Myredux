@@ -13,8 +13,8 @@ const wh = Dimensions.get('window').height;
 const Signup = () => {
 
     //headerImage
-    const headerImage = { uri: 'https://image.freepik.com/free-vector/startup-life-concept-illustration_114360-1068.jpg' }
-    const backImage = { uri: 'https://i.postimg.cc/28TFZgfJ/angryimg.png' }
+    // const headerImage = { uri: 'https://image.freepik.com/free-vector/startup-life-concept-illustration_114360-1068.jpg' }
+    // const backImage = { uri: 'https://i.postimg.cc/28TFZgfJ/angryimg.png' }
 
     const fetchData = useSelector((state) => state.userData);
     // console.log(fetchData);
@@ -45,23 +45,23 @@ const Signup = () => {
     const dispatch = useDispatch();
     // const mydata = useSelector((state) => state.userData);
 
-    
+
     return (
         <View style={{ flex: 1 }}>
             {/* <Text style={styles.heading}>Signup</Text> */}
-            <Image source={headerImage} style={styles.headerImage} />
-            <ImageBackground style={styles.formContainer} source={backImage}>
-                <TextInput value={name} onChangeText={name => setName(name)} style={styles.inp} placeholder="Enter your name" />
-                <TextInput value={email} onChangeText={email => setEmail(email)} style={styles.inp} placeholder="Enter your email" />
-                <TextInput value={phone} onChangeText={phone => setPhone(phone)} style={styles.inp} placeholder="Enter your phone" />
-                <TextInput value={pass} onChangeText={pass => setPass(pass)} style={styles.inp} placeholder="Enter your password" />
-                <TextInput value={conpass} onChangeText={conpass => setConpass(conpass)} style={styles.inp} placeholder="Confirm your password" />
+            {/* <Image source={headerImage} style={styles.headerImage} /> */}
+            {/* <ImageBackground style={styles.formContainer} source={backImage}> */}
+            <TextInput value={name} onChangeText={name => setName(name)} style={styles.inp} placeholder="Enter your name" />
+            <TextInput value={email} onChangeText={email => setEmail(email)} style={styles.inp} placeholder="Enter your email" />
+            <TextInput value={phone} onChangeText={phone => setPhone(phone)} style={styles.inp} placeholder="Enter your phone" />
+            <TextInput value={pass} onChangeText={pass => setPass(pass)} style={styles.inp} placeholder="Enter your password" />
+            <TextInput value={conpass} onChangeText={conpass => setConpass(conpass)} style={styles.inp} placeholder="Confirm your password" />
 
-                <TouchableOpacity style={styles.btn} onPress={() => saveToRedux()} >
-                    <Text style={styles.btnText}>Save</Text>
-                </TouchableOpacity>
+            <TouchableOpacity style={styles.btn} onPress={() => saveToRedux()} >
+                <Text style={styles.btnText}>Save</Text>
+            </TouchableOpacity>
 
-            </ImageBackground>
+            {/* </ImageBackground> */}
         </View>
     );
 }
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     formContainer: {
         flex: .7,
         backgroundColor: "#f74f54",
-        borderTopLeftRadius: wh/wh/10,
-        borderTopRightRadius: wh/wh/10
+        borderTopLeftRadius: wh / wh / 10,
+        borderTopRightRadius: wh / wh / 10
     },
     inp: {
         borderBottomWidth: 2,
@@ -94,16 +94,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#111',
         fontWeight: "bold",
-        fontSize: ww/20,
+        fontSize: ww / 20,
         padding: 10
     },
     btn: {
         backgroundColor: '#fff',
-        padding: ww/40,
-        marginLeft: ww/4,
-        marginRight: ww/4,
+        padding: ww / 40,
+        marginLeft: ww / 4,
+        marginRight: ww / 4,
         alignItems: 'center',
-        borderRadius: ww/5,
+        borderRadius: ww / 5,
         borderWidth: 2,
     },
     btnText: {
