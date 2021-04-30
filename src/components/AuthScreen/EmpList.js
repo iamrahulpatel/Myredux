@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import Header from "../common/Header";
@@ -8,40 +8,59 @@ import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DEMO_SAGA } from "../../store/actio
 
 const EmpList = () => {
 
-    const storedata = useSelector((state) => state.storeSaga);
-    console.log("storedata: ", storedata)
-    const displaydata = useSelector((state) => state.displaySaga);
+
+    const displaydata = useSelector((state) => state.displayApiSaga);
     console.log("displaydata: ", displaydata)
-    const displaydataapi = useSelector((state) => state.displayApiSaga);
-    console.log("displaydataapi: ", displaydataapi)
-    
+
     const dispatch = useDispatch();
     const navigation = useNavigation();
 
 
     return (
-        <View style={{ flex: 1 }}>
-            <Header style={{ color: "red" }} name="Employees List" />
-            <TouchableOpacity
-                onPress={
-                    () =>
-                        console.log(displaydata)
-                }
-            >
-                <Text>Show Employees</Text>
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <Header name="Posts List" />
             <FlatList
                 data={displaydata}
-                renderItem={({ item, index }) => (
-                    <View>
-                        <Text style={{ fontSize: 20 }}>{item}{item.id}..: {item.employee_name}</Text>
-                    </View>
-                )}
-                keyExtractor={item => item.id}
+                renderItem={
+                    ({ item, index }) => (
+                        <TouchableOpacity 
+                        onPress={()=>{
+                            navigation.navigate('EmpDetail',{
+                                id: item.id
+                            })
+                        }}
+                        >
+                            <View style={{flexDirection:"row"}} >
+                                <Text style={styles.id}>{item.id}.</Text>
+                                <Text style={styles.title}>{item.title}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+            // keyExtractor={item => item.id}
             />
-            <Text>start {displaydata} end</Text>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
+    id:{
+        fontSize:25,
+        color:"#111",
+        textDecorationLine:"underline",
+        backgroundColor:"pink",
+        margin:5
+    },
+    title:{
+        fontSize:25,
+        color:"#111",
+        textDecorationLine:"underline",
+        backgroundColor:"#e6e3e3",
+        margin:10,
+        textTransform:"capitalize"
+    }
+})
 
 export default EmpList;
