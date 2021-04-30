@@ -1,18 +1,43 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { TEST_SAGA, STORE_DEMO_SAGA, SHOW_DEMO_SAGA } from "../actions/actionType";
+import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DEMO_SAGA } from "../actions/actionType";
 
 // const userReducerStates = (state) => state.reducer;
 
 function* checkSaga(value) {
 
   try {
-    // let details = yield select(userReducerStates);
-    // const response = yield call(fetch, 'https://jsonplaceholder.typicode.com/posts/1');
-    // console.log(response);
-
     //Method GET
     const getresp = yield call(() =>
-      fetch('https://reqres.in/api/users',
+      fetch('https://jsonplaceholder.typicode.com/posts',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application.json'
+          },
+          body: JSON.stringify(getresp)
+        })
+        .then((response) => response.json())
+        .then(myJson => myJson)
+    )
+    console.log("response ::",getresp);
+    console.log('Saga data ::', value.payload);
+
+    yield put({
+        type: DISPLAY_DEMO_SAGA,
+        payload: getresp
+    })
+
+  } catch (error) {
+    console.log("checkSaga error",error)
+  }
+}
+
+function* displayDetailSaga(value) {
+
+  try {
+    //Method GET
+    const getresp = yield call(() =>
+      fetch(`https://dummy.restapiexample.com/api/v1/employee/${value.payload}`,
         {
           method: 'GET',
           headers: {
@@ -23,26 +48,11 @@ function* checkSaga(value) {
         .then((response) => response.json())
         .then(myJson => myJson)
     )
-    console.log("response ::",getresp);
-    console.log('Saga data ::', value.payload);
-
-    //Method POST
-    // const postresp = yield call(() =>
-    //   fetch("http://dummy.restapiexample.com/api/v1/employees")
-    //     .then(response => response.json())
-    //     .then(myJson => myJson),
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application.json',
-    //     },
-    //     body: JSON.stringify(postresp)
-    //   }
-    // );
-    // console.log('POST response ', value.payload);
+    console.log("displayDetailSaga response ::",getresp);
+    console.log('displayDetailSaga Saga data ::', value.payload);
 
     yield put({
-        type: SHOW_DEMO_SAGA,
+        type: DISPLAY_FROM_API,
         payload: getresp.data
     })
 
@@ -54,5 +64,6 @@ function* checkSaga(value) {
 function* firstSaga() {
   console.log("Hello this is my first saga")
   yield takeLatest(STORE_DEMO_SAGA, checkSaga);
+  yield takeLatest(DISPLAY_DEMO_SAGA, displayDetailSaga);
 }
 export { firstSaga };

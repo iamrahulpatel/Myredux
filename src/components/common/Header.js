@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const Header = ({ name, showBack = true, leftIcon = null }) => {
+const Header = ({ name, showBack = true, leftIcon = true }) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
@@ -17,10 +17,13 @@ const Header = ({ name, showBack = true, leftIcon = null }) => {
                 leftIcon
             }
             <Text style={styles.head1}>{name}</Text>
-
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={styles.icon}>Delete</Text>
-            </TouchableOpacity>
+            {leftIcon ?
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Text style={styles.icon}>Delete</Text>
+                </TouchableOpacity>
+                :
+                null}
+    
         </View>
     )
 }

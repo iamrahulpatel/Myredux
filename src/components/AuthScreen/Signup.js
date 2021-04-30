@@ -3,6 +3,7 @@ import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity, Image,
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
+import Header from "../common/Header";
 
 //dimesnions
 const ww = Dimensions.get('window').width;
@@ -48,6 +49,7 @@ const Signup = () => {
 
     return (
         <View style={{ flex: 1 }}>
+            <Header name="Signup" showBack={false} leftIcon={false} />
             {/* <Text style={styles.heading}>Signup</Text> */}
             {/* <Image source={headerImage} style={styles.headerImage} /> */}
             {/* <ImageBackground style={styles.formContainer} source={backImage}> */}
