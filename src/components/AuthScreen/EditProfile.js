@@ -3,15 +3,15 @@ import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity } from 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
-import { SHOW_DEMO_SAGA, STORE_DEMO_SAGA } from "../../store/actions/actionType";
-
+import { DISPLAY_FROM_API, STORE_DEMO_SAGA } from "../../store/actions/actionType";
+import Header from "../common/Header";
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
 
 const EditProfile = () => {
 
     const fetchData = useSelector((state) => state.userData);
-    console.log("Edited Profile Data",fetchData);
+    console.log("Edited Profile Data", fetchData);
 
     //editing data states
     const [ename, setEname] = useState(fetchData?.myname);
@@ -39,7 +39,8 @@ const EditProfile = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Text style={styles.heading}>Edit Profile</Text>
+            <Header name="Edit Profile" showBack={false} leftIcon={false} />
+            {/* <Text style={styles.heading}>Edit Profile</Text> */}
             <View style={styles.formContainer}>
 
                 <TextInput value={ename} onChangeText={(name) => setEname(name)} style={styles.inp} placeholder="Enter your name" />
@@ -61,15 +62,26 @@ const EditProfile = () => {
                 <TouchableOpacity style={styles.btn} onPress={() =>
                     dispatch({
                         type: STORE_DEMO_SAGA,
-                        payload: "dummySagaData"
+                        payload: "store demo saga payload"
                     })
-                    && navigation.navigate('EmpList')
-                    } >
+                    &&
+                    dispatch({
+                        type: DISPLAY_FROM_API,
+                        payload: "API demo saga payload"
+                    })
+                    }>
+                    <Text style={styles.btnText}>Check Saga</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.btn} onPress={() =>
+                    navigation.navigate('EmpList')
+                } >
                     <Text style={styles.btnText}>Employee List</Text>
                 </TouchableOpacity>
 
+
+
             </View>
-            <Text>{wh},{ww}</Text>
         </View>
     );
 }
@@ -88,19 +100,22 @@ const styles = StyleSheet.create({
     },
     inp: {
         borderBottomWidth: 2,
-        borderBottomColor: '#00AC61',
-        margin: ww / (ww * .2),
+        borderColor: '#fff',
+        borderLeftWidth: 2,
+        borderRadius: 10,
+        margin: 10,
         fontSize: 20,
-        color: '#00AC61',
+        color: '#111',
         fontWeight: "bold",
-        fontSize: ww / 20
+        fontSize: ww / 20,
+        padding: 10
     },
     btnContainer: {
         flexDirection: 'row',
         justifyContent: 'space-evenly'
     },
     btn: {
-        backgroundColor: '#00AC61',
+        backgroundColor: '#0EB2BF',
         padding: ww / (ww * .08),
         borderRadius: ww / 10,
         borderWidth: 2

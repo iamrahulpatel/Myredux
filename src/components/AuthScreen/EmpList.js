@@ -3,44 +3,43 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import Header from "../common/Header";
-import { TEST_SAGA, STORE_DEMO_SAGA } from "../../store/actions/actionType";
+import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DEMO_SAGA } from "../../store/actions/actionType";
 
 
 const EmpList = () => {
 
-    const dummySagaData = useSelector((state) => state.storeData);
-    console.log("dummySagaData " , dummySagaData)
+    const storedata = useSelector((state) => state.storeSaga);
+    console.log("storedata: ", storedata)
+    const displaydata = useSelector((state) => state.displaySaga);
+    console.log("displaydata: ", displaydata)
+    const displaydataapi = useSelector((state) => state.displayApiSaga);
+    console.log("displaydataapi: ", displaydataapi)
+    
     const dispatch = useDispatch();
-    const renderItemFunc = ({ item, index }) => (
-        <View>
-            <Text>Name : {item.id}</Text>
-            <Text>Age : {item.email}</Text>
-        </View>
-    )
-
     const navigation = useNavigation();
+
 
     return (
         <View style={{ flex: 1 }}>
-            <Header style={{color:"red"}} name="Employees List" />
+            <Header style={{ color: "red" }} name="Employees List" />
             <TouchableOpacity
-            onPress={
-                ()=>
-                {
-                    dispatch({
-                        type:STORE_DEMO_SAGA,
-                        payload:"dummySagaData"
-                    })
+                onPress={
+                    () =>
+                        console.log(displaydata)
                 }
-            }
             >
                 <Text>Show Employees</Text>
             </TouchableOpacity>
             <FlatList
-                data={dummySagaData}
-                renderItem={renderItemFunc}
+                data={displaydata}
+                renderItem={({ item, index }) => (
+                    <View>
+                        <Text style={{ fontSize: 20 }}>{item}{item.id}..: {item.employee_name}</Text>
+                    </View>
+                )}
+                keyExtractor={item => item.id}
             />
-            <Text>start {dummySagaData} end</Text>
+            <Text>start {displaydata} end</Text>
         </View>
     );
 }

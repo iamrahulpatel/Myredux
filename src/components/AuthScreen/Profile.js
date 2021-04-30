@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { TEST_SAGA , STORE_DEMO_SAGA} from "../../store/actions/actionType";
 import { firstSaga } from "../../store/sagas/mainSaga";
+import Header from "../common/Header";
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
 
@@ -26,7 +27,8 @@ const Profile = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Text style={styles.heading}>Profile</Text>
+            <Header name="Profile" showBack={false} leftIcon={false} />
+            {/* <Text style={styles.heading}>Profile</Text> */}
             <View style={styles.formContainer}>
                 {/* <TextInput value={fetchData.myname} onChangeText={(name) => setEname(name)} editable={editmode} style={styles.inp} />
                 <TextInput value={fetchData.myemail} onChangeText={(email) => setEemail(email)} editable={editmode} style={styles.inp} />
@@ -54,7 +56,6 @@ const Profile = () => {
                 </TouchableOpacity>
 
             </View>
-                <Text>{wh},{ww}</Text>
         </View>
     );
 }
@@ -76,19 +77,22 @@ const styles = StyleSheet.create({
     },
     inp: {
         borderBottomWidth: 2,
-        borderBottomColor: '#00AC61',
+        borderColor: '#fff',
+        borderLeftWidth: 2,
+        borderRadius: 10,
         margin: 10,
         fontSize: 20,
-        color: '#00AC61',
+        color: '#111',
         fontWeight: "bold",
-        fontSize: 25
+        fontSize: ww / 20,
+        padding: 10
     },
     btnContainer: {
         flexDirection: 'row',
         justifyContent: 'space-evenly'
     },
     btn: {
-        backgroundColor: '#00AC61',
+        backgroundColor: '#0EB2BF',
         padding: 15,
         borderRadius: 50,
         borderWidth: 2
