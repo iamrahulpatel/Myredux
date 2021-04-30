@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
 import { DISPLAY_FROM_API, STORE_DEMO_SAGA } from "../../store/actions/actionType";
 import Header from "../common/Header";
+
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
 
@@ -40,7 +41,6 @@ const EditProfile = () => {
     return (
         <View style={{ flex: 1 }}>
             <Header name="Edit Profile" showBack={false} leftIcon={false} />
-            {/* <Text style={styles.heading}>Edit Profile</Text> */}
             <View style={styles.formContainer}>
 
                 <TextInput value={ename} onChangeText={(name) => setEname(name)} style={styles.inp} placeholder="Enter your name" />
@@ -63,11 +63,6 @@ const EditProfile = () => {
                     dispatch({
                         type: STORE_DEMO_SAGA,
                         payload: "store demo saga payload"
-                    })
-                    &&
-                    dispatch({
-                        type: DISPLAY_FROM_API,
-                        payload: "API demo saga payload"
                     })
                     }>
                     <Text style={styles.btnText}>Check Saga</Text>

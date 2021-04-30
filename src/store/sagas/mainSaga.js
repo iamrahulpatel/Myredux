@@ -1,7 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DEMO_SAGA } from "../actions/actionType";
-
-// const userReducerStates = (state) => state.reducer;
+import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_FROM_API, DETAIL_API , DISPLAY_DETAIL} from "../actions/actionType";
 
 function* checkSaga(value) {
 
@@ -14,30 +12,30 @@ function* checkSaga(value) {
           headers: {
             'Content-Type': 'application.json'
           },
-          body: JSON.stringify(getresp)
+          body: null
         })
         .then((response) => response.json())
         .then(myJson => myJson)
     )
-    console.log("response ::",getresp);
+    console.log("response ::", getresp);
     console.log('Saga data ::', value.payload);
 
     yield put({
-        type: DISPLAY_DEMO_SAGA,
-        payload: getresp
+      type: DISPLAY_FROM_API,
+      payload: getresp
     })
 
   } catch (error) {
-    console.log("checkSaga error",error)
+    console.log("checkSaga error", error)
   }
 }
 
-function* displayDetailSaga(value) {
+function* detailSaga(value) {
 
   try {
     //Method GET
     const getresp = yield call(() =>
-      fetch(`https://dummy.restapiexample.com/api/v1/employee/${value.payload}`,
+      fetch(`https://jsonplaceholder.typicode.com/posts/${value.payload}`,
         {
           method: 'GET',
           headers: {
@@ -48,22 +46,23 @@ function* displayDetailSaga(value) {
         .then((response) => response.json())
         .then(myJson => myJson)
     )
-    console.log("displayDetailSaga response ::",getresp);
-    console.log('displayDetailSaga Saga data ::', value.payload);
+    console.log("response ::", getresp);
+    console.log('Saga data ::', value.payload);
 
     yield put({
-        type: DISPLAY_FROM_API,
-        payload: getresp.data
+      type: DISPLAY_DETAIL,
+      payload: getresp
     })
 
   } catch (error) {
-    console.log(error)
+    console.log("checkSaga error", error)
   }
 }
+
 
 function* firstSaga() {
   console.log("Hello this is my first saga")
   yield takeLatest(STORE_DEMO_SAGA, checkSaga);
-  yield takeLatest(DISPLAY_DEMO_SAGA, displayDetailSaga);
+  yield takeLatest(DETAIL_API, detailSaga);
 }
 export { firstSaga };

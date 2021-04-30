@@ -1,4 +1,4 @@
-import { SAVE_DATA, TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DUMMY_SAGA, DISPLAY_FROM_API } from "../actions/actionType";
+import { SAVE_DATA, TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DUMMY_SAGA, DISPLAY_FROM_API, DETAIL_API, DISPLAY_DETAIL } from "../actions/actionType";
 
 const initialState = {
     userData: null,
@@ -6,7 +6,10 @@ const initialState = {
 
     storeSaga: null,
     displaySaga: null,
-    displayApiSaga: null
+    displayApiSaga: null,
+    
+    detailApi:null,
+    displayDetail:null
 }
 
 export default myReducer = (state = initialState, action) => {
@@ -35,6 +38,16 @@ export default myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 displayApiSaga: action.payload
+            }
+        case DETAIL_API:
+            return {
+                ...state,
+                detailApi: action.payload
+            }
+            case DISPLAY_DETAIL:
+            return {
+                ...state,
+                displayDetail: action.payload
             }
         default:
             return state;
