@@ -5,19 +5,19 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const Header = ({ name, showBack = true, leftIcon = true }) => {
+const Header = ({ name, leftIcon = false, rightIcon = false }) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            {showBack ?
+            {leftIcon ?
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Text style={styles.icon}>Edit</Text>
                 </TouchableOpacity>
                 :
-                leftIcon
+                null
             }
             <Text style={styles.head1}>{name}</Text>
-            {leftIcon ?
+            {rightIcon ?
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Text style={styles.icon}>Delete</Text>
                 </TouchableOpacity>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         padding: 10,
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         backgroundColor: "#0EB2BF"
     },
     icon: {

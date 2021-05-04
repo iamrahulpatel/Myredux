@@ -40,7 +40,7 @@ const EditProfile = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header name="Edit Profile" showBack={false} leftIcon={false} />
+            <Header name="Edit Profile" leftIcon={false} rightIcon={false} />
             <View style={styles.formContainer}>
 
                 <TextInput value={ename} onChangeText={(name) => setEname(name)} style={styles.inp} placeholder="Enter your name" />
@@ -69,9 +69,9 @@ const EditProfile = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.btn} onPress={() =>
-                    navigation.navigate('EmpList')
+                    navigation.navigate('PostList')
                 } >
-                    <Text style={styles.btnText}>Employee List</Text>
+                    <Text style={styles.btnText}>Show Post List</Text>
                 </TouchableOpacity>
 
 
