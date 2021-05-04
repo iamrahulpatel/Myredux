@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_FROM_API, DETAIL_API , DISPLAY_DETAIL} from "../actions/actionType";
+import { types } from "../actions/actionType";
 
 function* checkSaga(value) {
 
@@ -21,7 +21,7 @@ function* checkSaga(value) {
     console.log('Saga data ::', value.payload);
 
     yield put({
-      type: DISPLAY_FROM_API,
+      type: types.DISPLAY_FROM_API,
       payload: getresp
     })
 
@@ -50,7 +50,7 @@ function* detailSaga(value) {
     console.log('Saga data ::', value.payload);
 
     yield put({
-      type: DISPLAY_DETAIL,
+      type: types.DISPLAY_DETAIL,
       payload: getresp
     })
 
@@ -62,7 +62,7 @@ function* detailSaga(value) {
 
 function* firstSaga() {
   console.log("Hello this is my first saga")
-  yield takeLatest(STORE_DEMO_SAGA, checkSaga);
-  yield takeLatest(DETAIL_API, detailSaga);
+  yield takeLatest(types.STORE_DEMO_SAGA, checkSaga);
+  yield takeLatest(types.DETAIL_API, detailSaga);
 }
 export { firstSaga };

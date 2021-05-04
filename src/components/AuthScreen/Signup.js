@@ -49,7 +49,7 @@ const Signup = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header name="Signup" showBack={false} leftIcon={false} />
+            <Header name="Signup" leftIcon={false} rightIcon={false} />
             {/* <Text style={styles.heading}>Signup</Text> */}
             {/* <Image source={headerImage} style={styles.headerImage} /> */}
             {/* <ImageBackground style={styles.formContainer} source={backImage}> */}
@@ -61,6 +61,10 @@ const Signup = () => {
 
             <TouchableOpacity style={styles.btn} onPress={() => saveToRedux()} >
                 <Text style={styles.btnText}>Save</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MyMap')} >
+                <Text style={styles.btnText}>Map</Text>
             </TouchableOpacity>
 
             {/* </ImageBackground> */}

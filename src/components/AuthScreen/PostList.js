@@ -3,10 +3,10 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import Header from "../common/Header";
-import { TEST_SAGA, STORE_DEMO_SAGA, DISPLAY_DEMO_SAGA } from "../../store/actions/actionType";
+import { types } from "../../store/actions/actionType";
 
 
-const EmpList = () => {
+const PostList = () => {
 
 
     const displaydata = useSelector((state) => state.displayApiSaga);
@@ -18,22 +18,23 @@ const EmpList = () => {
 
     return (
         <View style={styles.container}>
-            <Header name="Posts List" />
+            <Header name="Posts List" leftIcon={false} rightIcon={false} />
             <FlatList
                 data={displaydata}
                 renderItem={
                     ({ item, index }) => (
                         <TouchableOpacity 
                         onPress={()=>{
-                            navigation.navigate('EmpDetail',{
+                            navigation.navigate('PostDetail',{
                                 id: item.id
                             })
                         }}
                         >
-                            <View style={{flexDirection:"row"}} >
-                                <Text style={styles.id}>{item.id}.</Text>
+                            <View style={{flexDirection:"row", alignItems:"center"}} >
+                                <Text style={styles.id}>{item.id}</Text>
                                 <Text style={styles.title}>{item.title}</Text>
                             </View>
+                            <Text style={styles.line}></Text>
                         </TouchableOpacity>
                     )}
             // keyExtractor={item => item.id}
@@ -44,23 +45,29 @@ const EmpList = () => {
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
     },
     id:{
-        fontSize:25,
-        color:"#111",
-        textDecorationLine:"underline",
-        backgroundColor:"pink",
-        margin:5
+        fontSize:20,
+        color:"#000",
+        backgroundColor:"#0EB2BF",
+        margin:5,
+        height:40,
+        width:40,
+        borderRadius:20,
+        textAlign:"center",
+        paddingTop:5,
     },
     title:{
-        fontSize:25,
-        color:"#111",
-        textDecorationLine:"underline",
+        fontSize:20,
+        color:"#000",
         backgroundColor:"#e6e3e3",
-        margin:10,
-        textTransform:"capitalize"
+        textTransform:"capitalize",
+    },
+    line:{
+        borderBottomWidth:2,
+        borderColor:"#0EB2BF"
     }
 })
 
-export default EmpList;
+export default PostList;
