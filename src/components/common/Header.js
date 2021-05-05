@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-
+import { Icon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -11,7 +11,7 @@ const Header = ({ name, leftIcon = false, rightIcon = false }) => {
         <View style={styles.container}>
             {leftIcon ?
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Text style={styles.icon}>Edit</Text>
+                    <Icon name="edit" type="FontAwesome5" style={styles.icon} />
                 </TouchableOpacity>
                 :
                 null
@@ -19,7 +19,7 @@ const Header = ({ name, leftIcon = false, rightIcon = false }) => {
             <Text style={styles.head1}>{name}</Text>
             {rightIcon ?
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Text style={styles.icon}>Delete</Text>
+                    <Icon name="delete" type="AntDesign" style={styles.icon} />
                 </TouchableOpacity>
                 :
                 null}
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         padding: 10,
-        justifyContent: "space-evenly",
+        justifyContent: "space-around",
         backgroundColor: "#0EB2BF"
     },
     icon: {
-        fontSize: 20,
+        fontSize: 28,
         color: "#fff",
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     head1: {
         fontSize: 30,

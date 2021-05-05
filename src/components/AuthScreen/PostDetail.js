@@ -27,7 +27,7 @@ const PostDetail = ({ route }) => {
 
     return (
         <View style={styles.container}>
-            <Header name="Post Detail" />
+            <Header name="Post Detail" leftIcon={true} rightIcon={true} />
 
             <Text style={styles.id}>{postDetail?.id}.{postDetail?.title}</Text>
             <View>
@@ -85,3 +85,7 @@ const styles = StyleSheet.create({
 })
 
 export default PostDetail;
+
+// AIzaSyCA4sYlMe6yATc9DVbfZS5WuwkkYpYpbzs my
+// AIzaSyCT-UvG80YvcbNJHVVEZXMVTULw8fq8688 online
+// AIzaSyDCPXPLUkK3UVrLr9msaS6-EsZ6UHbVgEq so
