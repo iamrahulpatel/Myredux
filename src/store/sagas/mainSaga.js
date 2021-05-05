@@ -64,5 +64,9 @@ function* firstSaga() {
   console.log("Hello this is my first saga")
   yield takeLatest(types.STORE_DEMO_SAGA, checkSaga);
   yield takeLatest(types.DETAIL_API, detailSaga);
+
+  // //DELETE AND UPDATE
+  // yield takeLatest(types.STORE_DEMO_SAGA, checkSaga);
+  // yield takeLatest(types.DETAIL_API, detailSaga);
 }
 export { firstSaga };
