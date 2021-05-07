@@ -1,0 +1,48 @@
+
+          {/* Multiple Marker */}
+
+          
+          {/* <Marker
+            coordinate={{
+              latitude: 28.416352,
+              longitude: 77.306202
+            }}
+            title="Hotels"
+            // pinColor="green"
+            icon={{
+              uri: 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/128/Map-Marker-Ball-Chartreuse-icon.png',
+            }}
+          />
+          <Marker
+            coordinate={{
+              latitude: 28.397290,
+              longitude: 77.321803
+            }}
+            title="Bank"
+            pinColor="blue"
+            icon={{
+              uri: 'https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/bank-icon.png',
+            }}
+          />
+          <Marker
+            coordinate={{
+              latitude: 28.415937,
+              longitude: 77.318195
+            }}
+            title="Resturant"
+            pinColor="red"
+            icon={{
+              uri: 'https://icons.iconarchive.com/icons/webalys/kameleon.pics/128/Food-Dome-icon.png',
+            }}
+          />
+          <Marker
+            coordinate={{
+              latitude: 28.409596,
+              longitude: 77.303422
+            }}
+            title="Market"
+            pinColor="orange"
+            icon={{
+              uri: 'https://icons.iconarchive.com/icons/graphicloads/100-flat/128/cart-icon.png',
+            }}
+          /> */}
