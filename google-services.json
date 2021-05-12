@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "423126508401",
+    "project_id": "rnpushnotifexample",
+    "storage_bucket": "rnpushnotifexample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423126508401:android:88d706576229e2349bccd0",
+        "android_client_info": {
+          "package_name": "com.myredux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423126508401-gm8ft7fk447a7ffv3leep4vhi305cvmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDftE8sPFJ_BJiapbXxD2AqsfkkzVxGK-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423126508401-gm8ft7fk447a7ffv3leep4vhi305cvmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
