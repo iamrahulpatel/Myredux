@@ -1,6 +1,6 @@
-import MapView, { Callout, Heatmap, Marker, Polygon, Circle, Polyline } from 'react-native-maps';
+import MapView, { Callout, Heatmap, Marker, Polygon, Circle, Polyline, Overlay, Geojson, } from 'react-native-maps';
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, Modal, Pressable, TextInput, } from "react-native";
+import { View, Text, StyleSheet, Image, Modal, Pressable, TextInput, Button} from "react-native";
 import Header from "../components/common/Header";
 import CustomMarker from "./CustomMarker";
 
@@ -12,19 +12,22 @@ const MyMap = () => {
   const [mylatitude, setmylatitude] = useState(0)
   {
     Geolocation.getCurrentPosition(data => setmylatitude(data.coords.latitude));
-    // Geolocation.getCurrentPosition(data => console.log("Latitude",data.coords.latitude));
   }
 
   const [mylongitude, setmylongitude] = useState(0)
   {
     Geolocation.getCurrentPosition(data => setmylongitude(data.coords.longitude));
-    // Geolocation.getCurrentPosition(data => console.log("Longitude",data.coords.longitude));
   }
 
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [lat, setLat] = useState(0);
-  const [long, setLong] = useState(0);
+  const [lat, setLat] = useState(mylatitude);
+  const [long, setLong] = useState(mylongitude);
+
+  const [visible, setVisible] = useState(false);
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
 
   const mycordinates = [
     {
@@ -33,6 +36,7 @@ const MyMap = () => {
       latitude: 28.416352,
       longitude: 77.306202,
       description: "Get well furnished rooms",
+      pincolor: "blue",
       markerImage: 'https://cdn0.iconfinder.com/data/icons/hotel-icons-rounded/110/Hotel-2-512.png'
     },
     {
@@ -41,6 +45,7 @@ const MyMap = () => {
       latitude: 28.415937,
       longitude: 77.318195,
       description: "Come and Eat",
+      pincolor: "orange",
       markerImage: 'https://icons.iconarchive.com/icons/webalys/kameleon.pics/128/Food-Dome-icon.png'
     },
     {
@@ -49,6 +54,7 @@ const MyMap = () => {
       latitude: 28.39720,
       longitude: 77.32183,
       description: "Robbers not allowed",
+      pincolor: "red",
       markerImage: 'https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/bank-icon.png'
     },
     {
@@ -57,6 +63,7 @@ const MyMap = () => {
       latitude: 28.4065,
       longitude: 77.3130,
       description: "Chiseld Body",
+      pincolor: "green",
       markerImage: 'http://getdrawings.com/free-icon/gym-icon-54.png'
     },
     {
@@ -65,10 +72,10 @@ const MyMap = () => {
       latitude: 28.409596,
       longitude: 77.303422,
       description: "Potato to Tomato",
+      pincolor: "gold",
       markerImage: 'https://icons.iconarchive.com/icons/graphicloads/100-flat/128/cart-icon.png'
     }
   ]
-
 
   return (
     <>
@@ -88,8 +95,10 @@ const MyMap = () => {
           mapType="standard"
         // userInterfaceStyle='dark'
         >
+
           {/* CUSTOM Marker */}
           <Marker
+            draggable
             coordinate={{
               latitude: mylatitude,
               longitude: mylongitude,
@@ -102,12 +111,24 @@ const MyMap = () => {
             }}
           >
 
+            {/* <Button title="Open Overlay" onPress={toggleOverlay} />
+
+            {mycordinates.map(marker => (
+              <Overlay bounds={marker} image={{uri:'https://i.ibb.co/mFdhSTW/circle-cropped.png'}} isVisible={visible} onBackdropPress={toggleOverlay} >
+                <Text>{marker.latitude}</Text>
+              </Overlay>
+            ))} */}
+
+
             {/* CUSTOM Callout */}
             <Callout onPress={() => setModalVisible(true)} >
               <View>
                 <View style={styles.calloutMainView}>
                   <Text style={styles.name}>Rahul Patel</Text>
                   <Text>Hi there! I live here</Text>
+                  {/* <Image style={styles.calloutImage}
+                    source={require('../assets/images/startup.jpg')}
+                  /> */}
                 </View>
               </View>
             </Callout>
@@ -117,7 +138,7 @@ const MyMap = () => {
 
           {
             mycordinates.map(() => (
-              <Polygon coordinates={mycordinates} strokeColor="#3DBE29" fillColor="rgba(194, 222, 240, 0.3)" />
+              <Polygon coordinates={mycordinates} strokeColor="#0EB2BF" strokeWidth={10} fillColor="rgba(194, 222, 240, 0.3)" />
             ))
           }
           {/* {
@@ -133,9 +154,15 @@ const MyMap = () => {
           } */}
           {/* {
             mycordinates.map((marker) => (
-              <Polyline coordinates={mycordinates} />
+              <Polyline coordinates={mycordinates} strokeWidth={2}/>
             ))
           } */}
+          {/* {
+            mycordinates.map((marker) => (
+              <Overlay image={{uri:'https://i.ibb.co/ynqmZ4Y/placeholder-1.png'}} bounds={marker} tappable={true} />
+            ))
+          } */}
+
           {
             mycordinates.map((marker, index) => (
               <Marker
@@ -146,10 +173,10 @@ const MyMap = () => {
                 }}
                 title={marker.title}
                 description={marker.description}
-                pinColor="#02B290"
-                icon={{uri:'https://i.ibb.co/ynqmZ4Y/placeholder-1.png'}}
-                >
-                {/* <CustomMarker mycordinates={marker} /> */}
+              // pinColor={marker.pincolor}
+              // icon={{uri:'https://i.ibb.co/ynqmZ4Y/placeholder-1.png'}}
+              >
+                <CustomMarker mycordinates={marker} />
               </Marker>
 
             ))
@@ -251,20 +278,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // marginTop: 22
+    marginTop: 22
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: "#85ced4",
     borderRadius: 20,
-    padding: 25,
+    padding: 55,
     alignItems: "center",
     borderWidth: 2
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    marginTop: 10
   },
   buttonClose: {
     backgroundColor: "#D82E2F",
