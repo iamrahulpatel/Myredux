@@ -21,7 +21,7 @@ const Profile = () => {
     const [ephone, setEphone] = useState(fetchData?.myphone);
     const [epass, setEpass] = useState(fetchData?.mypass);
     const [econpass, setEconpass] = useState(fetchData?.myconpass);
-
+    
     const navigation = useNavigation();
 
 
@@ -39,6 +39,7 @@ const Profile = () => {
                 <Text style={styles.inp}>Welcome {fetchData?.myname}</Text>
                 <Text style={styles.inp}>{fetchData?.myemail}</Text>
                 <Text style={styles.inp}>{fetchData?.myphone}</Text>
+                
             </View>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('EditProfile')}>

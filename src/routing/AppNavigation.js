@@ -14,13 +14,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-
 const AppNavigation = () => {
 
+  const deeplinking = {
+    prefix : ['my-redux://', 'https://my-redux.com/app']
+   
+  }
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={deeplinking}>
       <Stack.Navigator headerMode={false} initialRouteName={Signup}>
-        
+
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
@@ -28,7 +32,7 @@ const AppNavigation = () => {
         <Stack.Screen name="PostList" component={PostList} />
         <Stack.Screen name="PostDetail" component={PostDetail} />
         <Stack.Screen name="MyMap" component={MyMap} />
-      </Stack.Navigator> 
+      </Stack.Navigator>
     </NavigationContainer>
   );
 
