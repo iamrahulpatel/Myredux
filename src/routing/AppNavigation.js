@@ -7,6 +7,9 @@ import Header from '../components/common/Header';
 import PostList from '../components/AuthScreen/PostList';
 import PostDetail from '../components/AuthScreen/PostDetail';
 import MyMap from '../mapView/MyMap';
+import DeepLink from '../components/AuthScreen/DeepLink';
+import CameraRolling from "../components/AuthScreen/CameraRolling";
+
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,10 +20,24 @@ const Stack = createStackNavigator();
 
 const AppNavigation = () => {
 
+  const deepLink = {
+    prefixes: ["my-redux://", "https://my-redux.com/app"],
+    config: {
+      Profile: 'profile',
+      MyMap: 'maps',
+      DeepLink: {
+        path : 'deep/:id',
+        params : {
+          id: null
+        }
+      }
+    }
+  }
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={deepLink}>
       <Stack.Navigator headerMode={false} initialRouteName={Signup}>
-        
+
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
@@ -28,7 +45,10 @@ const AppNavigation = () => {
         <Stack.Screen name="PostList" component={PostList} />
         <Stack.Screen name="PostDetail" component={PostDetail} />
         <Stack.Screen name="MyMap" component={MyMap} />
-      </Stack.Navigator> 
+        <Stack.Screen name="DeepLink" component={DeepLink} />
+        <Stack.Screen name="CameraRolling" component={CameraRolling} />
+
+      </Stack.Navigator>
     </NavigationContainer>
   );
 
