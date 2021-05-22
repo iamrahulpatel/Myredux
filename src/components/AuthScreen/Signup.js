@@ -67,6 +67,10 @@ const Signup = () => {
                 <Text style={styles.btnText}>Map</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CameraRolling')} >
+                <Text style={styles.btnText}>CameraRoll</Text>
+            </TouchableOpacity>
+
             {/* </ImageBackground> */}
         </View>
     );
