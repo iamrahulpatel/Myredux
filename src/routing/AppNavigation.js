@@ -7,8 +7,8 @@ import Header from '../components/common/Header';
 import PostList from '../components/AuthScreen/PostList';
 import PostDetail from '../components/AuthScreen/PostDetail';
 import MyMap from '../mapView/MyMap';
-import DeepLink from '../components/AuthScreen/DeepLink';
-import CameraRolling from "../components/AuthScreen/CameraRolling";
+import DeepLink from '../components/AuthScreen/DeepLinking/DeepLink';
+import CameraRolling from "../components/AuthScreen/CameraRoll/CameraRolling";
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,6 +22,7 @@ const AppNavigation = () => {
 
   const deepLink = {
     prefixes: ["my-redux://", "https://my-redux.com/app"],
+    
     config: {
       Profile: 'profile',
       MyMap: 'maps',

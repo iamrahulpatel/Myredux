@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {View,Image,FlatList,PermissionsAndroid,Platform,} from 'react-native';
-import Header from '../common/Header';
+import Header from '../../common/Header';
 import CameraRoll from '@react-native-community/cameraroll';
 
 const CameraRolling = () => {
+    //storing our photos
   const [data, setData] = useState('');
 
   const getPhotos = () => {
     CameraRoll.getPhotos({
       first: 20,
       assetType: 'Photos',
-      // groupName:'Reface',
-      // fromTime: 1584356434595,
-      
+      groupName:'Screenshots',
+      fromTime: 1584356434595,
 
     })
       .then((res) => {
@@ -50,7 +50,7 @@ const CameraRolling = () => {
   return (
     <View>
       <Header name="Camera Roll" />
-      <FlatList
+      <FlatList 
         data={data}
         keyExtractor={(item, index) => index.toString()}
         numColumns={5}
@@ -64,6 +64,7 @@ const CameraRolling = () => {
           />
         )}
       />
+      
     </View>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
-import Header from '../common/Header';
+import Header from '../../common/Header';
 import {useNavigation} from '@react-navigation/native'
 
 const DeepLink = ({route}) => {
