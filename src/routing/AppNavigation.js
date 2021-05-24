@@ -22,7 +22,6 @@ const AppNavigation = () => {
 
   const deepLink = {
     prefixes: ["my-redux://", "https://my-redux.com/app"],
-    
     config: {
       Profile: 'profile',
       MyMap: 'maps',
