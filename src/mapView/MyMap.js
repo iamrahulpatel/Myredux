@@ -99,6 +99,7 @@ const MyMap = () => {
           {/* CUSTOM Marker */}
           <Marker
             draggable
+            onDragEnd={(e) => {console.log('dragEnd', e.nativeEvent.coordinate)}}
             coordinate={{
               latitude: mylatitude,
               longitude: mylongitude,
