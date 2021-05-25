@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity } from "react-nativ
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../common/Header";
 import { types } from "../../store/actions/actionType";
+import { Icon } from "native-base";
 
 const PostDetail = ({ route }) => {
 
@@ -13,8 +14,8 @@ const PostDetail = ({ route }) => {
     const [editmode, setEditmode] = useState(false);
 
     //states onchange
-    const [newId, setNewId] = useState(postDetail?.id.toString());
-    const [newTitle, setNewTitle] = useState(postDetail?.title);
+    const [newId, setNewId] = useState('');
+    const [newTitle, setNewTitle] = useState('');
 
     const { id } = route.params;
 
@@ -23,19 +24,69 @@ const PostDetail = ({ route }) => {
             type: types.DETAIL_API,
             payload: id
         })
-    }, [newId, newTitle])
+    }, [])
 
     return (
         <View style={styles.container}>
-            <Header name="Post Detail" leftIcon={true} rightIcon={true} />
+            <Header name="Post Detail" showIcons={false}
+                leftIcon={
+                    <TouchableOpacity onPress={() => { setEditmode(!editmode) }}>
+                        {!editmode ? <Icon name="edit" type="FontAwesome5" style={styles.iconStyle} /> : null}
+                    </TouchableOpacity>
+                }
+                rightIcon={
+                    <TouchableOpacity onPress={() => {
+                        dispatch({
+                            type: types.DELETE_SAGA,
+                            payload: id
+                        })
+                    }}>
+                        <Icon name="delete" type="AntDesign" style={styles.iconStyle} />
 
-            <Text style={styles.id}>{postDetail?.id}.{postDetail?.title}</Text>
-            <View>
+                    </TouchableOpacity>
+                } />
+
+            <Text style={styles.id}>Id. {postDetail?.id}</Text>
+            <Text style={styles.id}>Title. {postDetail?.title}</Text>
+            {/* <View>
                 <TextInput style={styles.inp} editable={editmode} onChangeText={(newId) => setNewId(newId)} value={newId} />
                 <TextInput style={styles.inp} editable={editmode} onChangeText={(newTitle) => setNewTitle(newTitle)} value={newTitle} />
-            </View>
+            </View> */}
 
-            {
+
+
+
+            
+            {editmode ?
+                <View>
+                <TextInput style={styles.inp} onChangeText={(text) => setNewId(text)} placeholder="Your New Id" />
+                    <TextInput style={styles.inp} onChangeText={(text) => setNewTitle(text)} placeholder="Your New Title" />
+                    {/* view for save and cancel button */}
+                    <View style={{ flexDirection: "row", alignContent:"space-between" }} >
+                        <TouchableOpacity style={styles.savebtn} onPress={() => {
+                            dispatch({
+                                type: types.UPDATE_SAGA,
+                                payload: {
+                                    item: postDetail,
+                                    newTitle: newTitle,
+                                    newId: newId
+                                }
+                            })
+                            setEditmode(!editmode);
+                        }}>
+                            <Text style={styles.btnText}>Save</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.cancelbtn} onPress={() => {
+                            setEditmode(!editmode);
+                        }}>
+                            <Text style={styles.btnText}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View> : null}
+
+
+            {/* {
                 editmode ?
                     <View style={styles.btnContainer}>
                         <TouchableOpacity style={styles.btn} >
@@ -48,7 +99,7 @@ const PostDetail = ({ route }) => {
                     :
                     null
 
-            }
+            } */}
         </View>
     )
 }
@@ -79,7 +130,24 @@ const styles = StyleSheet.create({
     btnText: {
         color: "#fff",
         fontSize: 18
+    },
+    iconStyle:{
+        color:"#fff"
+    },
+    savebtn:{
+        backgroundColor: 'green',
+        padding: 15,
+        borderRadius: 20,
+        borderWidth: 2
+    },
+    cancelbtn:{
+        backgroundColor: 'red',
+        padding: 15,
+        borderRadius: 20,
+        borderWidth: 2
     }
+
+
 
 
 })

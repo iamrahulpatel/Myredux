@@ -49,7 +49,7 @@ const Signup = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header name="Signup" leftIcon={false} rightIcon={false} />
+            <Header name="Signup" showIcons={false} />
             {/* <Text style={styles.heading}>Signup</Text> */}
             {/* <Image source={headerImage} style={styles.headerImage} /> */}
             {/* <ImageBackground style={styles.formContainer} source={backImage}> */}

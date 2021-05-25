@@ -11,7 +11,7 @@ const DeepLink = ({route}) => {
 
     return(
         <View>
-            <Header name="Deep Linking" />
+            <Header name="Deep Linking" showIcons={false} />
             <Text style={{fontSize:100}}>{id}</Text>
             <Button title="Camera Roll" onPress={()=> navigation.navigate('CameraRolling')} />
         </View>

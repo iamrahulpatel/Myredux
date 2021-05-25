@@ -79,7 +79,7 @@ const MyMap = () => {
 
   return (
     <>
-      <Header name="MyMap" />
+      <Header name="MyMap" showIcons={false} />
       {/* <TextInput style={styles.inp} >Lat:    {mylatitude}</TextInput>
       <TextInput style={styles.inp} >Long: {mylongitude}</TextInput> */}
       <View style={styles.container}>

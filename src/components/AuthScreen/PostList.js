@@ -18,7 +18,7 @@ const PostList = () => {
 
     return (
         <View style={styles.container}>
-            <Header name="Posts List" leftIcon={false} rightIcon={false} />
+            <Header name="Posts List" showIcons={false} />
             <FlatList
                 data={displaydata}
                 renderItem={

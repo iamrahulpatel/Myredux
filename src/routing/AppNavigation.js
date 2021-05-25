@@ -38,7 +38,7 @@ const AppNavigation = () => {
   }
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     Linking.addEventListener("url", ({ url }) => {
       // console.log("listener")
       if (url) {
