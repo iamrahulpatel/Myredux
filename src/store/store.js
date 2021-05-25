@@ -1,8 +1,3 @@
-// import { createStore } from "redux";
-// import  myReducer  from "../reducers/myreducer";
-
-// export const store = createStore(myReducer);
-
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 

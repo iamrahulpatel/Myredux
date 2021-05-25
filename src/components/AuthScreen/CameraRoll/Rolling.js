@@ -45,7 +45,7 @@ const Rolling = () => {
             numColumns={5}
             renderItem={({item})=>(
                 <Image
-                style={{height:100,width:40}}
+                style={{height:100,width:30 , borderRadius:20, margin:10}}
                 source={{uri:item.node.image.uri}}
                 />
             )}

@@ -27,7 +27,7 @@ const Profile = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header name="Profile" leftIcon={false} rightIcon={false} />
+            <Header name="Profile" showIcons={false} />
             {/* <Text style={styles.heading}>Profile</Text> */}
             <View style={styles.formContainer}>
                 {/* <TextInput value={fetchData.myname} onChangeText={(name) => setEname(name)} editable={editmode} style={styles.inp} />

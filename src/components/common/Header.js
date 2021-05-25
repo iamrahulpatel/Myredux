@@ -5,24 +5,24 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const Header = ({ name, leftIcon = false, rightIcon = false }) => {
+const Header = ({ name, showIcons=true, leftIcon = null, rightIcon = null }) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            {leftIcon ?
+            {showIcons ?
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Icon name="edit" type="FontAwesome5" style={styles.icon} />
                 </TouchableOpacity>
                 :
-                null
+                leftIcon
             }
             <Text style={styles.head1}>{name}</Text>
-            {rightIcon ?
-                <TouchableOpacity onPress={() => navigation.goBack()}>
+            {showIcons ?
+                <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                     <Icon name="delete" type="AntDesign" style={styles.icon} />
                 </TouchableOpacity>
                 :
-                null}
+                rightIcon}
     
         </View>
     )

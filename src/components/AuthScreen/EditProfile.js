@@ -40,7 +40,7 @@ const EditProfile = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header name="Edit Profile" leftIcon={false} rightIcon={false} />
+            <Header name="Edit Profile" showIcons={false} />
             <View style={styles.formContainer}>
 
                 <TextInput value={ename} onChangeText={(name) => setEname(name)} style={styles.inp} placeholder="Enter your name" />
