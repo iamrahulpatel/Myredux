@@ -1,7 +1,4 @@
 apply plugin: "com.android.application"
-//firebase
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -214,7 +211,6 @@ dependencies {
         implementation jscFlavor
     }
 
-    compile project(':@react-native-community_cameraroll')
 }
 
 // Run this once to be able to run the application with BUCK

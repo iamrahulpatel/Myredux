@@ -18,60 +18,8 @@ import { useAppState } from '../components/common/useAppState';
 
 const Stack = createStackNavigator();
 
-
 const AppNavigation = () => {
 
-  const currentAppState = useAppState()
-
-  const deepLink = {
-    prefixes: ["my-redux://", "https://my-redux.com/app"],
-    config: {
-      Profile: 'profile',
-      MyMap: 'maps',
-      DeepLink: {
-        path: 'deep/:id',
-        params: {
-          id: null
-        }
-      }
-    }
-  }
-
-
-  useEffect(() => {
-    Linking.addEventListener("url", ({ url }) => {
-      // console.log("listener")
-      if (url) {
-        // letarr = url.split("/")
-        // idParam = arr[arr.length - 1]
-        // dummyDeepLinkedUrl = url;
-        // if (idParam.includes("_")) {
-        //   idParam = idParam.substring(0, idParam.indexOf("_"))
-        // }
-        // navigateToUrl(url, idParam)
-        console.log("event listener",url)
-      }
-    })
-    if (currentAppState == 'active') {
-      Linking.getInitialURL().then(url => {
-        console.log("second listener", url)
-      });
-    }
-    return (() => {
-      removeLinkingListeners()
-    })
-  }, [])
-
-  const removeLinkingListeners = async () => {
-    Linking.removeAllListeners('url')
-  }
-
-useEffect(()=>{
-  console.log("currentAppState ",currentAppState)
-},[currentAppState])
-
-  return (
-    <NavigationContainer linking={deepLink}>
       <Stack.Navigator headerMode={false} initialRouteName={Signup}>
 
         <Stack.Screen name="Signup" component={Signup} />
@@ -81,8 +29,6 @@ useEffect(()=>{
         <Stack.Screen name="PostList" component={PostList} />
         <Stack.Screen name="PostDetail" component={PostDetail} />
         <Stack.Screen name="MyMap" component={MyMap} />
-        <Stack.Screen name="DeepLink" component={DeepLink} />
-        <Stack.Screen name="CameraRolling" component={CameraRolling} />
 
       </Stack.Navigator>
     </NavigationContainer>
