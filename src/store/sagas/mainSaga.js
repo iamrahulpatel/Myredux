@@ -25,7 +25,7 @@ function* checkSaga(value) {
       payload: getresp
     })
 
-  } 
+  }
   catch (error) {
     console.log("checkSaga error", error)
   }
@@ -36,101 +36,101 @@ function* checkSaga(value) {
 //TO display detail list from api
 function* detailSaga(value) {
 
-    try {
-      //Method GET
-      const getresp = yield call(() =>
-        fetch(`https://jsonplaceholder.typicode.com/posts/${value.payload}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application.json'
-            },
-            body: null
-          })
-          .then((response) => response.json())
-          .then(myJson => myJson)
-      )
-      console.log("response ::", getresp);
-      console.log('Saga data ::', value.payload);
+  try {
+    //Method GET
+    const getresp = yield call(() =>
+      fetch(`https://jsonplaceholder.typicode.com/posts/${value.payload}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application.json'
+          },
+          body: null
+        })
+        .then((response) => response.json())
+        .then(myJson => myJson)
+    )
+    console.log("response ::", getresp);
+    console.log('Saga data ::', value.payload);
 
-      yield put({
-        type: types.DISPLAY_DETAIL,
-        payload: getresp
-      })
+    yield put({
+      type: types.DISPLAY_DETAIL,
+      payload: getresp
+    })
 
-    } catch (error) {
-      console.log("checkSaga error", error)
-    }
+  } catch (error) {
+    console.log("checkSaga error", error)
   }
+}
 
 
-  //to delete posts from api
+//to delete posts from api
 function* deleteSaga(value) {
   try {
 
-      const delresp = yield call(() =>
-          fetch(`https://jsonplaceholder.typicode.com/posts/${value.payload}`,
-              {
-                  method: 'DELETE',
-              }).then(res => res.json()))
+    const delresp = yield call(() =>
+      fetch(`https://jsonplaceholder.typicode.com/posts/${value.payload}`,
+        {
+          method: 'DELETE',
+        }).then(res => res.json()))
 
-      console.log(delresp);
+    console.log(delresp);
 
-      yield put({
-          type: types.DISPLAY_DETAIL,
-          payload: value.payload
-      })
+    yield put({
+      type: types.DISPLAY_DETAIL,
+      payload: value.payload
+    })
   }
   catch (err) {
-      console.log(err);
+    console.log(err);
   }
 }
 
 //to update data from API
-function* updateSaga(editData) {
+function* updateSaga(updatedData) {
   try {
-      const { item, newTitle, newId } = editData.payload
+    const { item, newTitle, newId } = updatedData.payload
 
-      let body = JSON.stringify({
-          id: newId,
-          title: newTitle,
-          body: item.body,
-          // id: newId,
-      })
-      const putresp = yield call(() =>
-          fetch(`https://jsonplaceholder.typicode.com/posts/${item.id}`,
-              {
-                  method: 'PUT',
-                  headers: {
-                      'Accept': 'application/json',
-                      'Content-Type': 'application/json'
-                  },
-                  body: body
-              }).then(response => response.json()).
-              then(myJson => myJson))
+    let body = JSON.stringify({
+      id: item.id,
+      title: newTitle,
+      body: item.body,
+      userId: newId,
+    })
+    const putresp = yield call(() =>
+      fetch(`https://jsonplaceholder.typicode.com/posts/${item.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: body
+        }).then(response => response.json()).
+        then(myJson => myJson))
 
-      console.log(putresp);
-      yield put({
-          type: types.DISPLAY_DETAIL,
-          payload: item.id
-      })
+    console.log("putresp id", putresp);
+    yield put({
+      type: types.DISPLAY_DETAIL,
+      payload: item.id
+    })
 
   }
   catch (err) {
-      console.log(err);
+    console.log(err);
   }
 }
 
 
 
 
-  function* firstSaga() {
-    console.log("Hello this is my first saga")
-    yield takeLatest(types.STORE_DEMO_SAGA, checkSaga);
-    yield takeLatest(types.DETAIL_API, detailSaga);
+function* firstSaga() {
+  console.log("Hello this is my first saga")
+  yield takeLatest(types.STORE_DEMO_SAGA, checkSaga);
+  yield takeLatest(types.DETAIL_API, detailSaga);
 
-    //DELETE AND UPDATE
-    yield takeLatest(types.DELETE_SAGA, deleteSaga);
-    yield takeLatest(types.UPDATE_SAGA, updateSaga);
-  }
-  export { firstSaga };
+  //DELETE AND UPDATE
+  yield takeLatest(types.DELETE_SAGA, deleteSaga);
+  yield takeLatest(types.UPDATE_SAGA, updateSaga);
+}
+export { firstSaga };
