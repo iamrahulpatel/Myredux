@@ -10,7 +10,6 @@ import PostDetail from '../components/AuthScreen/PostDetail';
 import MyMap from '../mapView/MyMap';
 import DeepLink from '../components/AuthScreen/DeepLinking/DeepLink';
 import CameraRolling from "../components/AuthScreen/CameraRoll/CameraRolling";
-import {Linking} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

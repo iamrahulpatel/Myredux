@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View,Text, Image, FlatList, PermissionsAndroid, Platform, StyleSheet, Button } from 'react-native';
+import { View, Text, Image, FlatList, PermissionsAndroid, Platform, TouchableOpacity, StyleSheet } from 'react-native';
 import Header from '../../common/Header';
 import CameraRoll from '@react-native-community/cameraroll';
 
@@ -7,11 +7,14 @@ const CameraRolling = () => {
   //storing our photos
   const [data, setData] = useState('');
 
+  //deleting uri
+  const [myuri, setMyuri] = useState('');
+
   const getPhotos = () => {
     CameraRoll.getPhotos({
-      first: 1,
+      first: 20,
       assetType: 'Photos',
-      groupName: 'Screenshots',
+      groupName: 'Download',
 
     })
       .then((res) => {
@@ -27,8 +30,8 @@ const CameraRolling = () => {
       const result = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         {
-          title: 'Permission Chahiye',
-          message: 'mere ko Permission de de bhai!',
+          title: 'Permission Required',
+          message: 'Permission required for aceessing the Gallery!',
         },
       );
       if (result !== 'granted') {
@@ -42,13 +45,46 @@ const CameraRolling = () => {
     }
   };
 
-  const deletePics = () => {
-    CameraRoll.deletePhotos(['file:///storage/emulated/0/DCIM/Screenshots/Screenshot_2021-05-25-17-30-42-348_com.miui.gallery.jpg'])
-  }
-
   useEffect(() => {
     askPermission();
   }, []);
+
+  const deletePics = () => {
+    CameraRoll.deletePhotos([myuri]);
+    alert("Photo Deleted Successfully");
+  }
+
+  const askDeletePermission = async () => {
+    if (Platform.OS === 'android') {
+      const result = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Permission Required',
+          message: 'Permission required for aceessing the Gallery!',
+        },
+      );
+    }
+  };
+
+  useEffect(() => {
+    askDeletePermission()
+  }, [])
+
+
+//this functionality not working properly
+  const savePics = () => {
+    const Photos = [...data];
+    Photos.map((item) => {
+      CameraRoll.save(item.node.image.uri, { type: 'photo' }).then(() => {
+      alert("Saved Succesfully")
+      })
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+
+  };
+
 
   return (
     <View style={styles.container}>
@@ -69,12 +105,18 @@ const CameraRolling = () => {
               source={{ uri: item.node.image.uri }}
 
             />
-            <Text>{console.log(item.node.image.uri)}</Text>
+            {setMyuri(item.node.image.uri)}
           </View>
         )}
       />
-      <Button title="Save"  onPress={()=>deletePics()} />
-      <Button title="Delete"  onPress={()=>deletePics()} />
+      <View style={styles.btnContainer} >
+        <TouchableOpacity onPress={() => savePics()} style={styles.btn} >
+          <Text style={styles.btnText} >Save</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => deletePics()} style={styles.btn} >
+          <Text style={styles.btnText} >Delete</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -83,6 +125,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ddd"
+  },
+  btnContainer:{
+    flexDirection:"row",
+  },
+  btn: {
+    backgroundColor: "#ff4321",
+    padding: 10,
+    marginLeft:90,
+    margin:10,
+    borderRadius:20
+  },
+  btnText:{
+    color:"#fff",
+    fontSize:24
   }
 })
 
