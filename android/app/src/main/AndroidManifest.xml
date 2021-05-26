@@ -1,41 +1,46 @@
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.myredux">
+package="com.myredux">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <application
-      android:name=".MainApplication"
-      android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:allowBackup="false"
-      android:theme="@style/AppTheme"
-      android:requestLegacyExternalStorage="true">
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<application
+android:name=".MainApplication"
+android:label="@string/app_name"
+android:icon="@mipmap/ic_launcher"
+android:roundIcon="@mipmap/ic_launcher_round"
+android:allowBackup="false"
+android:theme="@style/AppTheme"
+android:requestLegacyExternalStorage="true">
 
-      <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-        android:launchMode="singleTask"
-        android:windowSoftInputMode="adjustResize">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
+<activity
+android:name=".MainActivity"
+android:label="@string/app_name"
+android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+android:launchMode="singleTask"
+android:windowSoftInputMode="adjustResize">
+<intent-filter>
+<action android:name="android.intent.action.MAIN" />
+<category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+<intent-filter>
+<action android:name="android.intent.action.VIEW" />
+<category android:name="android.intent.category.DEFAULT" />
+<category android:name="android.intent.category.BROWSABLE" />
+<data 
+android:host="my-redux.com"
+android:pathPrefix="/app"
+android:scheme="https" 
+/>
+</intent-filter>
+</activity>
 
-        </intent-filter>
-      </activity>
+<meta-data
+android:name="com.google.android.geo.API_KEY"
+android:value="AIzaSyCA4sYlMe6yATc9DVbfZS5WuwkkYpYpbzs"/>
+<uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-       <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCA4sYlMe6yATc9DVbfZS5WuwkkYpYpbzs"/>
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-
-    </application>
+</application>
 </manifest>
