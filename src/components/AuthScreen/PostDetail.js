@@ -40,11 +40,11 @@ const PostDetail = ({ route }) => {
                             type: types.DELETE_SAGA,
                             payload: id
                         })
-                        &&
-                        alert("Post Deleted Successfully")
+                            &&
+                            alert("Post Deleted Successfully")
                     }}>
                         <Icon name="delete" type="AntDesign" style={styles.iconStyle} />
-                        
+
 
                     </TouchableOpacity>
                 } />
@@ -59,12 +59,12 @@ const PostDetail = ({ route }) => {
 
 
 
-            
+
             {editmode ?
                 <View>
-                <TextInput style={styles.inp} onChangeText={(text) => setNewId(text)} placeholder="Your New Id" />
+                    <TextInput style={styles.inp} onChangeText={(text) => setNewId(text)} placeholder="Your New Id" />
                     <TextInput style={styles.inp} onChangeText={(text) => setNewTitle(text)} placeholder="Your New Title" />
-                    
+
                     <View style={styles.btnContainer} >
                         <TouchableOpacity style={styles.savebtn} onPress={() => {
                             dispatch({
@@ -75,8 +75,8 @@ const PostDetail = ({ route }) => {
                                     newId: newId
                                 }
                             })
-                            &&
-                        alert("Post Updated Successfully")
+                                
+                                alert("Post Updated Successfully")
                             setEditmode(!editmode);
                         }}>
                             <Text style={styles.btnText}>Save</Text>
@@ -91,7 +91,7 @@ const PostDetail = ({ route }) => {
                 </View> : null}
 
 
-            
+
         </View>
     )
 }
@@ -113,26 +113,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly'
     },
-    btn: {
-        backgroundColor: 'red',
-        padding: 15,
-        borderRadius: 50,
-        borderWidth: 2
-    },
     btnText: {
         color: "#fff",
         fontSize: 18
     },
-    iconStyle:{
-        color:"#fff"
+    iconStyle: {
+        color: "#fff"
     },
-    savebtn:{
+    savebtn: {
         backgroundColor: '#22CB5C',
         padding: 15,
         borderRadius: 20,
         borderWidth: 2
     },
-    cancelbtn:{
+    cancelbtn: {
         backgroundColor: '#E21717',
         padding: 15,
         borderRadius: 20,

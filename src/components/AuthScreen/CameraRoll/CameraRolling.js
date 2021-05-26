@@ -71,7 +71,6 @@ const CameraRolling = () => {
   }, [])
 
 
-//this functionality not working properly
   const savePics = () => {
     const Photos = [...data];
     Photos.map((item) => {
