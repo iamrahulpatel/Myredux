@@ -40,8 +40,11 @@ const PostDetail = ({ route }) => {
                             type: types.DELETE_SAGA,
                             payload: id
                         })
+                        &&
+                        alert("Post Deleted Successfully")
                     }}>
                         <Icon name="delete" type="AntDesign" style={styles.iconStyle} />
+                        
 
                     </TouchableOpacity>
                 } />
@@ -61,8 +64,8 @@ const PostDetail = ({ route }) => {
                 <View>
                 <TextInput style={styles.inp} onChangeText={(text) => setNewId(text)} placeholder="Your New Id" />
                     <TextInput style={styles.inp} onChangeText={(text) => setNewTitle(text)} placeholder="Your New Title" />
-                    {/* view for save and cancel button */}
-                    <View style={{ flexDirection: "row", alignContent:"space-between" }} >
+                    
+                    <View style={styles.btnContainer} >
                         <TouchableOpacity style={styles.savebtn} onPress={() => {
                             dispatch({
                                 type: types.UPDATE_SAGA,
@@ -72,6 +75,8 @@ const PostDetail = ({ route }) => {
                                     newId: newId
                                 }
                             })
+                            &&
+                        alert("Post Updated Successfully")
                             setEditmode(!editmode);
                         }}>
                             <Text style={styles.btnText}>Save</Text>
@@ -86,20 +91,7 @@ const PostDetail = ({ route }) => {
                 </View> : null}
 
 
-            {/* {
-                editmode ?
-                    <View style={styles.btnContainer}>
-                        <TouchableOpacity style={styles.btn} >
-                            <Text style={styles.btnText} >  Save  </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn} >
-                            <Text style={styles.btnText} >Cancel</Text>
-                        </TouchableOpacity>
-                    </View>
-                    :
-                    null
-
-            } */}
+            
         </View>
     )
 }
@@ -114,7 +106,7 @@ const styles = StyleSheet.create({
     inp: {
         backgroundColor: "#bfbfbf",
         margin: 10,
-        fontSize: 30,
+        fontSize: 28,
         borderRadius: 10
     },
     btnContainer: {
@@ -135,13 +127,13 @@ const styles = StyleSheet.create({
         color:"#fff"
     },
     savebtn:{
-        backgroundColor: 'green',
+        backgroundColor: '#22CB5C',
         padding: 15,
         borderRadius: 20,
         borderWidth: 2
     },
     cancelbtn:{
-        backgroundColor: 'red',
+        backgroundColor: '#E21717',
         padding: 15,
         borderRadius: 20,
         borderWidth: 2
