@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, FlatList, PermissionsAndroid, Platform, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, PermissionsAndroid, Platform, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import Header from '../../common/Header';
 import CameraRoll from '@react-native-community/cameraroll';
+
 
 const CameraRolling = () => {
   //storing our photos
@@ -11,13 +12,17 @@ const CameraRolling = () => {
   const [myuri, setMyuri] = useState([]);
 
   //selcting images
-  const [selImg, setSelimg] = useState('')
+  const [selImg, setSelimg] = useState('');
+
+
+  const [isLoading, setisLoading] = useState(false)
+  const [incImg, setIncimg] = useState(0);
 
   const getPhotos = () => {
     CameraRoll.getPhotos({
-      first: 20,
+      first: 30 + incImg,
       assetType: 'Photos',
-      // groupName: 'Download',
+      // groupName: 'Screenshots',
 
     })
       .then((res) => {
@@ -27,6 +32,15 @@ const CameraRolling = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+
+    getPhotos();
+    
+    return () => {
+
+    }
+  }, [incImg]) 
 
   const askPermission = async () => {
     if (Platform.OS === 'android') {
@@ -79,7 +93,7 @@ const CameraRolling = () => {
     const Photos = [...data];
     Photos.map((item) => {
       CameraRoll.save(item.node.image.uri, { type: 'photo' }).then(() => {
-        alert("Saved Succesfully")
+        // alert("Saved Succesfully")
       })
         .catch((error) => {
           console.log(error);
@@ -104,6 +118,23 @@ const CameraRolling = () => {
     });
   }
 
+  
+
+  const footerLoad = () => {
+    return (
+      isLoading ?
+        <View>
+          <ActivityIndicator size="large" color="#0EB2BF" />
+        </View> : null
+    )
+  }
+
+  const loadMoreImg = () => {
+    setIncimg(incImg + 10)
+    setisLoading(true)
+    console.log(incImg)
+  }
+
 
   return (
     <View style={styles.container}>
@@ -115,19 +146,18 @@ const CameraRolling = () => {
         renderItem={({ item }) => (
           <TouchableOpacity onPress={selectImg}>
             <Image
-              style={{
-                width: 80,
-                height: 100,
-                borderRadius: 10,
-                margin: 5,
-              }}
+            resizeMode={'cover'}
+              style={styles.camImg}
               source={{ uri: item.node.image.uri }}
-
             />
             {setMyuri(item.node.image.uri)}
-            {console.log(item.node.image.uri)}
+            {/* {console.log(item.node.image.uri)} */}
           </TouchableOpacity>
         )}
+        // horizontal={true}
+        ListFooterComponent={footerLoad}
+        onEndReached={loadMoreImg}
+        onEndReachedThreshold={0}
       />
       <View style={styles.btnContainer} >
         <TouchableOpacity onPress={() => savePics()} style={styles.btn} >
@@ -146,18 +176,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ddd"
   },
+  camImg: {
+    width: 80,
+    height: 100,
+    borderRadius: 10,
+    margin: 5,
+  },
   btnContainer: {
     flexDirection: "row",
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   btn: {
     backgroundColor: "#0EB2BF",
     padding: 10,
     margin: 5,
     borderRadius: 10,
-    borderColor:"#affaff",
-    borderWidth:2,
+    borderColor: "#affaff",
+    borderWidth: 2,
   },
   btnText: {
     color: "#fff",
