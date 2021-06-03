@@ -40,8 +40,9 @@ const PostDetail = ({ route }) => {
                             type: types.DELETE_SAGA,
                             payload: id
                         })
-                            &&
+                            
                             alert("Post Deleted Successfully")
+                            
                     }}>
                         <Icon name="delete" type="AntDesign" style={styles.iconStyle} />
 
@@ -75,8 +76,8 @@ const PostDetail = ({ route }) => {
                                     newId: newId
                                 }
                             })
-                                
-                                alert("Post Updated Successfully")
+
+                            alert("Post Updated Successfully")
                             setEditmode(!editmode);
                         }}>
                             <Text style={styles.btnText}>Save</Text>
@@ -139,7 +140,3 @@ const styles = StyleSheet.create({
 })
 
 export default PostDetail;
-
-// AIzaSyCA4sYlMe6yATc9DVbfZS5WuwkkYpYpbzs my
-// AIzaSyCT-UvG80YvcbNJHVVEZXMVTULw8fq8688 online
-// AIzaSyDCPXPLUkK3UVrLr9msaS6-EsZ6UHbVgEq so

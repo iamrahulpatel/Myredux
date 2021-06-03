@@ -1,6 +1,6 @@
 import MapView, { Callout, Heatmap, Marker, Polygon, Circle, Polyline, Overlay, Geojson, } from 'react-native-maps';
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, Modal, Pressable, TextInput, Button} from "react-native";
+import { View, Text, StyleSheet, Image, Modal, Pressable, TextInput, Button, FlatList } from "react-native";
 import Header from "../components/common/Header";
 import CustomMarker from "./CustomMarker";
 
@@ -99,7 +99,7 @@ const MyMap = () => {
           {/* CUSTOM Marker */}
           <Marker
             draggable
-            onDragEnd={(e) => {console.log('dragEnd', e.nativeEvent.coordinate)}}
+            onDragEnd={(e) => { console.log('dragEnd', e.nativeEvent.coordinate) }}
             coordinate={{
               latitude: mylatitude,
               longitude: mylongitude,
@@ -139,7 +139,7 @@ const MyMap = () => {
 
           {
             mycordinates.map(() => (
-              <Polygon coordinates={mycordinates} strokeColor="#0EB2BF" strokeWidth={10} fillColor="rgba(194, 222, 240, 0.3)" />
+              <Polygon coordinates={mycordinates} strokeColor="#0EB2BF" strokeWidth={5} fillColor="rgba(194, 222, 240, 0.3)" />
             ))
           }
           {/* {
@@ -182,6 +182,7 @@ const MyMap = () => {
 
             ))
           }
+          
 
         </MapView>
 

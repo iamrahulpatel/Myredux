@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
 import Header from "../common/Header";
+import { wp, hp ,wpx, hpx ,nf  } from "../common/constants";
 
 //dimesnions
 const ww = Dimensions.get('window').width;
@@ -92,33 +93,33 @@ const styles = StyleSheet.create({
     formContainer: {
         flex: .7,
         backgroundColor: "#f74f54",
-        borderTopLeftRadius: wh / wh / 10,
-        borderTopRightRadius: wh / wh / 10
+        borderTopLeftRadius: wpx(10),
+        borderTopRightRadius: wpx(10)
     },
     inp: {
-        borderBottomWidth: 2,
+        borderBottomWidth: wpx(2),
         borderColor: '#fff',
-        borderLeftWidth: 2,
-        borderRadius: 10,
-        margin: 10,
-        fontSize: 20,
+        borderLeftWidth: wpx(2),
+        borderRadius: wpx(10),
+        margin: wpx(10),
         color: '#111',
         fontWeight: "bold",
-        fontSize: ww / 20,
-        padding: 10
+        fontSize: nf(20),
+        padding: wpx(10)
     },
     btn: {
         backgroundColor: '#fff',
-        padding: ww / 40,
-        marginLeft: ww / 4,
-        marginRight: ww / 4,
+        padding: wpx(8),
+        marginLeft: wp(30),
+        marginRight: wp(30),
         alignItems: 'center',
-        borderRadius: ww / 5,
-        borderWidth: 2,
+        borderRadius: wpx(30),
+        borderWidth: wpx(2),
+        marginTop:wpx(2)
     },
     btnText: {
-        color: "#f74f54",
-        fontSize: 25,
+        color: "#0EB2BF",
+        fontSize: nf(25),
         fontWeight: 'bold'
 
     }

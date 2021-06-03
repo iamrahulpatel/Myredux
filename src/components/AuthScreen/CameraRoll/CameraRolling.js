@@ -8,13 +8,16 @@ const CameraRolling = () => {
   const [data, setData] = useState('');
 
   //deleting uri
-  const [myuri, setMyuri] = useState('');
+  const [myuri, setMyuri] = useState([]);
+
+  //selcting images
+  const [selImg, setSelimg] = useState('')
 
   const getPhotos = () => {
     CameraRoll.getPhotos({
       first: 20,
       assetType: 'Photos',
-      groupName: 'Download',
+      // groupName: 'Download',
 
     })
       .then((res) => {
@@ -51,7 +54,8 @@ const CameraRolling = () => {
 
   const deletePics = () => {
     CameraRoll.deletePhotos([myuri]);
-    alert("Photo Deleted Successfully");
+    // alert("Photo Deleted Successfully");
+    console.log(myuri)
   }
 
   const askDeletePermission = async () => {
@@ -75,7 +79,7 @@ const CameraRolling = () => {
     const Photos = [...data];
     Photos.map((item) => {
       CameraRoll.save(item.node.image.uri, { type: 'photo' }).then(() => {
-      alert("Saved Succesfully")
+        alert("Saved Succesfully")
       })
         .catch((error) => {
           console.log(error);
@@ -83,6 +87,22 @@ const CameraRolling = () => {
     })
 
   };
+
+  const selectImg = () => {
+    CameraRoll.getPhotos({
+      first: 1,
+      assetType: 'Photos',
+      include: ['imageSize', 'filename']
+    }).then(rep => {
+      rep.edges.forEach(node => {
+        node.isSelected = false
+      });
+      setSelimg(rep.edges)
+      // setCameraRollPageInfo(rep.page_info)
+      console.log(selImg)
+
+    });
+  }
 
 
   return (
@@ -93,7 +113,7 @@ const CameraRolling = () => {
         keyExtractor={(item, index) => index.toString()}
         numColumns={4}
         renderItem={({ item }) => (
-          <View>
+          <TouchableOpacity onPress={selectImg}>
             <Image
               style={{
                 width: 80,
@@ -105,7 +125,8 @@ const CameraRolling = () => {
 
             />
             {setMyuri(item.node.image.uri)}
-          </View>
+            {console.log(item.node.image.uri)}
+          </TouchableOpacity>
         )}
       />
       <View style={styles.btnContainer} >
@@ -125,19 +146,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ddd"
   },
-  btnContainer:{
-    flexDirection:"row",
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent:"center",
+    alignItems:"center"
   },
   btn: {
-    backgroundColor: "#ff4321",
+    backgroundColor: "#0EB2BF",
     padding: 10,
-    marginLeft:90,
-    margin:10,
-    borderRadius:20
+    margin: 5,
+    borderRadius: 10,
+    borderColor:"#affaff",
+    borderWidth:2,
   },
-  btnText:{
-    color:"#fff",
-    fontSize:24
+  btnText: {
+    color: "#fff",
+    fontSize: 24
   }
 })
 
