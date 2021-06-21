@@ -102,13 +102,19 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     id: {
-        fontSize: 30
+        fontSize: 30,
+        backgroundColor: "#bfbfbf",
+        margin: 10,
+        borderRadius: 10,
+        padding:10
+
     },
     inp: {
         backgroundColor: "#bfbfbf",
         margin: 10,
         fontSize: 28,
-        borderRadius: 10
+        borderRadius: 10,
+        padding:10
     },
     btnContainer: {
         flexDirection: 'row',
@@ -116,7 +122,8 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: "#fff",
-        fontSize: 18
+        fontSize: 18,
+        fontWeight:"bold"
     },
     iconStyle: {
         color: "#fff"
@@ -124,13 +131,13 @@ const styles = StyleSheet.create({
     savebtn: {
         backgroundColor: '#22CB5C',
         padding: 15,
-        borderRadius: 20,
-        borderWidth: 2
+        borderRadius: 25,
+        borderWidth: 2,
     },
     cancelbtn: {
         backgroundColor: '#E21717',
         padding: 15,
-        borderRadius: 20,
+        borderRadius: 25,
         borderWidth: 2
     }
 

@@ -34,12 +34,9 @@ const CameraRolling = () => {
   };
 
   useEffect(() => {
-
     getPhotos();
-    
-    return () => {
-
-    }
+    askPermission();
+    askDeletePermission();
   }, [incImg]) 
 
   const askPermission = async () => {
@@ -62,9 +59,9 @@ const CameraRolling = () => {
     }
   };
 
-  useEffect(() => {
-    askPermission();
-  }, []);
+  // useEffect(() => {
+  //   askPermission();
+  // }, []);
 
   const deletePics = () => {
     CameraRoll.deletePhotos([myuri]);
@@ -84,9 +81,9 @@ const CameraRolling = () => {
     }
   };
 
-  useEffect(() => {
-    askDeletePermission()
-  }, [])
+  // useEffect(() => {
+  //   askDeletePermission()
+  // }, [])
 
 
   const savePics = () => {

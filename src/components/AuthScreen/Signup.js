@@ -72,6 +72,10 @@ const Signup = () => {
                 <Text style={styles.btnText}>CameraRoll</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MyAnimation')} >
+                <Text style={styles.btnText}>Animation</Text>
+            </TouchableOpacity>
+
             {/* </ImageBackground> */}
         </View>
     );
@@ -101,15 +105,15 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
         borderLeftWidth: wpx(2),
         borderRadius: wpx(10),
-        margin: wpx(10),
+        margin: wpx(8),
         color: '#111',
         fontWeight: "bold",
-        fontSize: nf(20),
-        padding: wpx(10)
+        fontSize: nf(18),
+        padding: wpx(8)
     },
     btn: {
         backgroundColor: '#fff',
-        padding: wpx(8),
+        padding: wpx(5),
         marginLeft: wp(30),
         marginRight: wp(30),
         alignItems: 'center',
