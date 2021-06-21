@@ -25,9 +25,7 @@ const MyMap = () => {
   const [long, setLong] = useState(mylongitude);
 
   const [visible, setVisible] = useState(false);
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
+
 
   const mycordinates = [
     {
@@ -112,13 +110,25 @@ const MyMap = () => {
             }}
           >
 
-            {/* <Button title="Open Overlay" onPress={toggleOverlay} />
 
-            {mycordinates.map(marker => (
-              <Overlay bounds={marker} image={{uri:'https://i.ibb.co/mFdhSTW/circle-cropped.png'}} isVisible={visible} onBackdropPress={toggleOverlay} >
-                <Text>{marker.latitude}</Text>
-              </Overlay>
-            ))} */}
+            {/* <Overlay
+              image={{ uri: 'https://img.icons8.com/dusk/2x/pin3.png' }}
+              bounds=
+              {[
+                [ 28.416352, 77.318195 ],
+                [ 28.416362, 77.318185 ]
+              ]}
+
+            /> */}
+            <Overlay
+              image="https://image.shutterstock.com/image-vector/pin-icon-vector-location-symbol-260nw-1723824118.jpg"
+              bounds={[
+                [28.3978749,77.2883500],
+                [ 28.40406596,77.2788227]
+                
+              ]}
+            />
+
 
 
             {/* CUSTOM Callout */}
@@ -182,7 +192,7 @@ const MyMap = () => {
 
             ))
           }
-          
+
 
         </MapView>
 

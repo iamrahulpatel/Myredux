@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
-import { TEST_SAGA , STORE_DEMO_SAGA} from "../../store/actions/actionType";
+import { types} from "../../store/actions/actionType";
 import { firstSaga } from "../../store/sagas/mainSaga";
 import Header from "../common/Header";
 const ww = Dimensions.get('window').width;
@@ -48,7 +48,7 @@ const Profile = () => {
 
                 <TouchableOpacity style={styles.btn} onPress={() => {
                     // dispatch({
-                    //     type:TEST_SAGA,
+                    //     type:types.TEST_SAGA,
                     //     payload:"This is payload my sagas"
                     // })
                     navigation.goBack()

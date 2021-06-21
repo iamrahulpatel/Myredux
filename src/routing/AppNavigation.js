@@ -15,6 +15,7 @@ import CameraRolling from "../components/AuthScreen/CameraRoll/CameraRolling";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useAppState } from '../components/common/useAppState';
+import MyAnimation from '../components/animation/MyAnimation';
 
 const Stack = createStackNavigator();
 
@@ -81,6 +82,8 @@ const AppNavigation = () => {
         <Stack.Screen name="MyMap" component={MyMap} />
         <Stack.Screen name="DeepLink" component={DeepLink} />
         <Stack.Screen name="CameraRolling" component={CameraRolling} />
+        <Stack.Screen name="MyAnimation" component={MyAnimation} />
+
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -3,7 +3,7 @@ import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity } from 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
-import { DISPLAY_FROM_API, STORE_DEMO_SAGA } from "../../store/actions/actionType";
+import { types } from "../../store/actions/actionType";
 import Header from "../common/Header";
 
 const ww = Dimensions.get('window').width;
@@ -61,7 +61,7 @@ const EditProfile = () => {
 
                 <TouchableOpacity style={styles.btn} onPress={() =>
                     dispatch({
-                        type: STORE_DEMO_SAGA,
+                        type: types.STORE_DEMO_SAGA,
                         payload: "store demo saga payload"
                     })
                     }>
