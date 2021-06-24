@@ -29,7 +29,7 @@ const MyMap = () => {
 
   const mycordinates = [
     {
-      id: 1,
+      // id: 1,
       title: "Hotel Inn",
       latitude: 28.416352,
       longitude: 77.306202,
@@ -38,7 +38,7 @@ const MyMap = () => {
       markerImage: 'https://cdn0.iconfinder.com/data/icons/hotel-icons-rounded/110/Hotel-2-512.png'
     },
     {
-      id: 2,
+      // id: 2,
       title: "Restaurant",
       latitude: 28.415937,
       longitude: 77.318195,
@@ -47,7 +47,7 @@ const MyMap = () => {
       markerImage: 'https://icons.iconarchive.com/icons/webalys/kameleon.pics/128/Food-Dome-icon.png'
     },
     {
-      id: 3,
+      // id: 3,
       title: "Bank",
       latitude: 28.39720,
       longitude: 77.32183,
@@ -56,7 +56,7 @@ const MyMap = () => {
       markerImage: 'https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/bank-icon.png'
     },
     {
-      id: 4,
+      // id: 4,
       title: "Gymnasium",
       latitude: 28.4065,
       longitude: 77.3130,
@@ -65,7 +65,7 @@ const MyMap = () => {
       markerImage: 'http://getdrawings.com/free-icon/gym-icon-54.png'
     },
     {
-      id: 5,
+      // id: 5,
       title: "Market",
       latitude: 28.409596,
       longitude: 77.303422,
@@ -148,8 +148,8 @@ const MyMap = () => {
 
 
           {
-            mycordinates.map(() => (
-              <Polygon coordinates={mycordinates} strokeColor="#0EB2BF" strokeWidth={5} fillColor="rgba(194, 222, 240, 0.3)" />
+            mycordinates.map((marker, index) => (
+              <Polygon key={index} coordinates={mycordinates} strokeColor="#0EB2BF" strokeWidth={5} fillColor="rgba(194, 222, 240, 0.3)" />
             ))
           }
           {/* {
