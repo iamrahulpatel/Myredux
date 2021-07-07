@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import { Provider } from "react-redux";
 import { store } from "./src/store/store";
-import AppNavigation from './src/routing/AppNavigation';
+import AppNavigation from './src/routes/AppNavigation';
 import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {

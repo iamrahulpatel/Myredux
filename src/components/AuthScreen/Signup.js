@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity, Image, ImageBackground } from "react-native";
+import { View, Text, Dimensions, TextInput, StyleSheet, TouchableOpacity, Image, ImageBackground, KeyboardAvoidingView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { showMyData } from "../../store/actions/action";
 import Header from "../common/Header";
-import { wp, hp ,wpx, hpx ,nf  } from "../common/constants";
+import { wp, hp, wpx, hpx, nf } from "../common/constants";
 
 //dimesnions
 const ww = Dimensions.get('window').width;
@@ -49,35 +49,37 @@ const Signup = () => {
 
 
     return (
-        <View style={{ flex: 1 }}>
-            <Header name="Signup" showIcons={false} />
-            {/* <Text style={styles.heading}>Signup</Text> */}
-            {/* <Image source={headerImage} style={styles.headerImage} /> */}
-            {/* <ImageBackground style={styles.formContainer} source={backImage}> */}
-            <TextInput value={name} onChangeText={name => setName(name)} style={styles.inp} placeholder="Enter your name" />
-            <TextInput value={email} onChangeText={email => setEmail(email)} style={styles.inp} placeholder="Enter your email" />
-            <TextInput value={phone} onChangeText={phone => setPhone(phone)} style={styles.inp} placeholder="Enter your phone" />
-            <TextInput value={pass} onChangeText={pass => setPass(pass)} style={styles.inp} placeholder="Enter your password" />
-            <TextInput value={conpass} onChangeText={conpass => setConpass(conpass)} style={styles.inp} placeholder="Confirm your password" />
+        <KeyboardAvoidingView behavior="position" style={{ flex: 1 }}>
+            <View >
+                <Header name="Signup" showIcons={false} />
+                {/* <Text style={styles.heading}>Signup</Text> */}
+                {/* <Image source={headerImage} style={styles.headerImage} /> */}
+                {/* <ImageBackground style={styles.formContainer} source={backImage}> */}
+                <TextInput value={name} onChangeText={name => setName(name)} style={styles.inp} placeholder="Enter your name" />
+                <TextInput value={email} onChangeText={email => setEmail(email)} style={styles.inp} placeholder="Enter your email" />
+                <TextInput value={phone} onChangeText={phone => setPhone(phone)} style={styles.inp} placeholder="Enter your phone" />
+                <TextInput value={pass} onChangeText={pass => setPass(pass)} style={styles.inp} placeholder="Enter your password" />
+                <TextInput value={conpass} onChangeText={conpass => setConpass(conpass)} style={styles.inp} placeholder="Confirm your password" />
 
-            <TouchableOpacity style={styles.btn} onPress={() => saveToRedux()} >
-                <Text style={styles.btnText}>Save</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => saveToRedux()} >
+                    <Text style={styles.btnText}>Save</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MyMap')} >
-                <Text style={styles.btnText}>Map</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MyMap')} >
+                    <Text style={styles.btnText}>Map</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CameraRolling')} >
-                <Text style={styles.btnText}>CameraRoll</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CameraRolling')} >
+                    <Text style={styles.btnText}>CameraRoll</Text>
+                </TouchableOpacity>
 
-            {/* <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MyAnimation')} >
+                {/* <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MyAnimation')} >
                 <Text style={styles.btnText}>Animation</Text>
             </TouchableOpacity> */}
 
-            {/* </ImageBackground> */}
-        </View>
+                {/* </ImageBackground> */}
+            </View>
+        </KeyboardAvoidingView>
     );
 }
 
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: wpx(30),
         borderWidth: wpx(2),
-        marginTop:wpx(2)
+        marginTop: wpx(2)
     },
     btnText: {
         color: "#0EB2BF",

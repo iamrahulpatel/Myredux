@@ -15,7 +15,13 @@ import CameraRolling from "../components/AuthScreen/CameraRoll/CameraRolling";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useAppState } from '../components/common/useAppState';
-import MyAnimation from '../components/animation/MyAnimation';
+
+import FirstAnimation from '../components/animations/FirstAnimation'
+import AnimatedTiming from '../components/animations/AnimatedTiming'
+import AnimatedParallel from '../components/animations/AnimatedParallel'
+import AnimatedSequence from '../components/animations/AnimatedSequence'
+import AnimatedStagger from '../components/animations/AnimatedStagger'
+
 
 const Stack = createStackNavigator();
 
@@ -71,9 +77,9 @@ const AppNavigation = () => {
 
   return (
     <NavigationContainer linking={deepLink}>
-      <Stack.Navigator headerMode={false} initialRouteName={Signup}>
+      <Stack.Navigator headerMode={false} initialRouteName={AnimatedParallel}>
 
-        <Stack.Screen name="Signup" component={Signup} />
+        {/* <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Header" component={Header} />
@@ -81,8 +87,13 @@ const AppNavigation = () => {
         <Stack.Screen name="PostDetail" component={PostDetail} />
         <Stack.Screen name="MyMap" component={MyMap} />
         <Stack.Screen name="DeepLink" component={DeepLink} />
-        <Stack.Screen name="CameraRolling" component={CameraRolling} />
-        <Stack.Screen name="MyAnimation" component={MyAnimation} />
+        <Stack.Screen name="CameraRolling" component={CameraRolling} /> */}
+
+        {/* <Stack.Screen name="FirstAnimation" component={FirstAnimation} /> */}
+        {/* <Stack.Screen name="AnimatedTiming" component={AnimatedTiming} /> */}
+        {/* <Stack.Screen name="AnimatedParallel" component={AnimatedParallel} /> */}
+        {/* <Stack.Screen name="AnimatedSequence" component={AnimatedSequence} />  */}
+        <Stack.Screen name="AnimatedStagger" component={AnimatedStagger} />
 
 
       </Stack.Navigator>
